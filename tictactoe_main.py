@@ -4,6 +4,7 @@ from tictactoe_env import TicTacToeEnv
 from tictactoe_qlearning_agent import TicTacToeQLearningAgent
 from tictactoe_sarsa_agent import TicTacToeSarsaAgent
 from tictactoe_algorithm_player import TicTacToeDecentAlgorithmPlayer
+from tictactoe_move_analyzer import TicTacToeMoveAnalyzer
 from tictactoe_plotter import TicTacToePlotter
 
 class Epsilon:
@@ -34,6 +35,12 @@ def main():
 
     experiment.experiment(num_episodes)
 
-    TicTacToePlotter.plot_episode_reward(rewards)
+    num_games_to_analyze = 100
+    analyzer = TicTacToeMoveAnalyzer(moves, rewards, num_games_to_analyze)
+    num_wins = analyzer.num_wins()
+    num_corner_openings = analyzer.num_corner_openings()
+    text = "{0} wins and {1} corner openings in the last {2} games.".format(num_wins, num_corner_openings, num_games_to_analyze)
+
+    TicTacToePlotter.plot_episode_reward(rewards, text)
 
 main()

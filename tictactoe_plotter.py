@@ -4,12 +4,11 @@ from matplotlib import pyplot as plt
 class TicTacToePlotter:
 
     @staticmethod
-    def plot_episode_reward(rewards, smoothing_window=50):
+    def plot_episode_reward(rewards, text, smoothing_window=50):
 
         wins_in_last_100_games = sum([r for r in rewards[-100:] if r == 1])
-        text = "{0} wins in the last 100 games".format(wins_in_last_100_games)
 
-        fig = plt.figure(figsize=(10,5), dpi=100)
+        fig = plt.figure(figsize=(10,5))
         rewards_smoothed = pd.Series(rewards).rolling(smoothing_window, min_periods=smoothing_window).mean()
         plt.plot(rewards_smoothed)
         plt.xlabel("Episode")

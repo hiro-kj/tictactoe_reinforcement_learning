@@ -69,7 +69,7 @@ def test_sarsa_with_greedy(agent):
 
 def _assert_by_running_select_action_multiple_times(agent, state, times, more_probable_value):
     if len(state) != 2:
-        raise Exception("The state must be a list with two elements.")
+        raise ValueError("The state must be a list with two elements.")
 
     actions = _perform_select_action_multiple_times(agent, state, times)
     less_probable_value = state[1] if state[0] == more_probable_value else state[0]

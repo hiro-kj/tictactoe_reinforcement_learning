@@ -161,7 +161,7 @@ def test_step_with_action_taken_before():
     mock_opponent.configure_mock(**attrs)
     
     env.step(0)
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         env.step(0)
 
 def test_step_with_action_taken_by_opponent():
@@ -173,6 +173,6 @@ def test_step_with_action_taken_by_opponent():
     mock_opponent.configure_mock(**attrs)
     
     env.step(0)
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         env.step(1)
     

@@ -48,7 +48,7 @@ class TicTacToeEnv:
     
     def _play(self, player_number, action):
         if self.board[action // 3, action % 3] != 0:
-            raise Exception("The action is not available")
+            raise ValueError("The action is not available")
 
         self.board[action // 3, action % 3] = player_number
         self.moves.append(action)

@@ -5,9 +5,6 @@ class TicTacToePlotter:
 
     @staticmethod
     def plot_episode_reward(rewards, text, smoothing_window=50):
-
-        wins_in_last_100_games = sum([r for r in rewards[-100:] if r == 1])
-
         fig = plt.figure(figsize=(10,5))
         rewards_smoothed = pd.Series(rewards).rolling(smoothing_window, min_periods=smoothing_window).mean()
         plt.plot(rewards_smoothed)

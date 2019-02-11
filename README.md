@@ -39,3 +39,19 @@ Comment out whichever you don't want.
 * **readme_images**: contains images for this README file.
 * **rl_base**: contains python script files with reinforcement learning code. These files do not have any tic-tac-toe related code. They can be reused for other reinforcement learning programs.
 * **tests**: contains unit test files with pytest.
+
+---
+## Analysis
+If you run the program multiple times, you will see two different results in the last 100 games. For some executions the AI agent picks a corner for the opening move all 100 times in the last 100 games. For the rest, it doesn't pick corners for the opening move at all (it picks the center for all 100 times).
+
+![alt text](./readme_images/tictactoe_graph_100_corner_openings.png "Graph 100 Corner Openings")
+
+![alt text](./readme_images/tictactoe_graph_0_corner_openings.png "Graph 0 Corner Openings")
+
+You may notice that when the AI agent opens games with a corner, it has more wins. Why? If the AI agent opens a game with a corner, the algorithm player has only 1 / 12 (8.33%) chance of tying the game. If the center is the opening move, the chance of tying the game increases to 1 / 6 (16.67%). In other words, opening a game with a corner gives the AI agent higher chance (11 / 12 or 91.67%) of winning the game than opening with the center (5 / 6 or 83.33%). Let's demonstrate them. Remember the algorithm player knows simple defensive moves and assume that the AI agent is already smart enough.
+
+If a game opens with a corner, the algorithm player must pick the center (1 out of 8 open spaces) to be able to square the game. The best next move for the AI agent is the diagonally opposite corner. And then, for the algorithm player to successfully defend, it must pick one of the four edges (side middles) (4 out of 6 open spaces) instead of a corner. This move forces the AI agent to defend itself. Otherwise, the AI agent will get a fork. The chance will be calculated as 1 / 8 * 4 / 6 = 1 / 12.
+
+If a game opens with the center, the only way that keeps the algorithm player from losing is playing a corner (4 out of 8 open spaces). The best next move for the AI agent is playing the diagonally opposite corner of the algorithm player's mark. Now for the algorithm player to prevent the AI agent from playing a fork, it must take one of the two corners left (2 out of 6 open spaces). The rest will be autopilot. The chance will be calculated as 4 / 8 * 2 / 6 = 1 / 6.
+
+Then, why does the AI agent sometimes keep playing the center? It didn't explore enough to discover the best opening move. The epsilon value decayed too quickly. There is room to tune the program.

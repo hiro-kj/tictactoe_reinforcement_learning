@@ -13,15 +13,15 @@ Note this program is not a game a user can play interacting with UI.
 
 ---
 ## How this works
-An AI agent plays tic-tac-toe against an algorithm player many times. In order to win the AI agent always opens a game. The algorithm player is not an AI. It has only two simple strategies; win if it has two marks inline; block if the AI agent has two marks inline. It plays randomly for the rest. The only way for the AI agent to win a game is to play a fork.
+An AI agent plays tic-tac-toe against an algorithm player many times. In order to win, the AI agent always opens a game. The algorithm player is not an AI. It has only two simple strategies; win if it has two marks inline; block if the AI agent has two marks inline. It plays randomly for the rest. The only way for the AI agent to win a game is to play a fork.
 
-Each execution of the program runs a certain number of episodes (games). After each episode the AI agent will receive a reward value; 1 if it wins; 0 if the game is tied; -1 if it loses. At the end of the execution, it will display a graph that shows relationship between episodes and rewards. For better visualization, the graph is smoothed over a window of size 50.
+Each execution of the program runs a certain number of episodes (games). After each episode the AI agent will receive a reward value; 1 if it wins; 0 if the game is tied; -1 if it loses. At the end of an execution, it will display a graph that shows relationship between episodes and rewards. For better visualization, the graph is smoothed over a window of size 50.
 
 ![alt text](./readme_images/tictactoe_graph.png "Graph")
 
 ---
 ## How to run
-This is a python 3 program. Execute tictactoe_main.py.
+This is a python 3 program. Execute tictactoe_main.py. The required packages to be documented.
 
 To switch between Q-Learning and SARSA, in the main function in tictactoe_main.py, you will find these two sets of two lines.
 ```python
@@ -42,7 +42,9 @@ Comment out whichever you don't want.
 
 ---
 ## Analysis
-If you run the program multiple times, you will see two different results in the last 100 games. For some executions the AI agent picks a corner for the opening move all 100 times in the last 100 games. For the rest, it doesn't pick corners for the opening move at all (it picks the center for all 100 times).
+The graph displayed after each execution shows that the AI agent successfully found ways to play forks and converges after about 1,500 episodes. After the convergence the AI agent can consistently beat the algorithm player 8 or 9 times out of 10 games.
+
+If you run the program multiple times, you will see two different results in the last 100 games. In some executions the AI agent picks a corner for the opening move all 100 times in the last 100 games. For the rest, it doesn't pick corners for the opening move at all (it picks the center for all 100 times).
 
 ![alt text](./readme_images/tictactoe_graph_100_corner_openings.png "Graph 100 Corner Openings")
 

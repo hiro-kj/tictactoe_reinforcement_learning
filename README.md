@@ -21,7 +21,10 @@ Each execution of the program runs a certain number of episodes (games). After e
 
 ---
 ## How to run
-This is a python 3 program. Execute tictactoe_main.py. The required packages to be documented.
+This is a python 3 program. Execute tictactoe_main.py. To install the required packages, requirements.txt is included, so simply run the following command.
+```
+    pip install -r requirements.txt
+```
 
 To switch between Q-Learning and SARSA, in the main function in tictactoe_main.py, you will find these two sets of two lines.
 ```python

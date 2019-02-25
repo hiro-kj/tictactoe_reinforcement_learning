@@ -3,13 +3,13 @@
 ## Goal
 Using reinforcement learning (Q-learning and SARSA) to see if an AI agent can learn playing a fork (two non-blocked lines of two) in tic-tac-toe.
 
-Example of forks:
+Example of a fork:
 
 ![alt text](./readme_images/tictactoe_fork.png "Fork")
 
 
 
-Note this program is not a game a user can play interacting with UI.
+Note: this program is not a game a user can play interacting with UI.
 
 ---
 ## How this works
@@ -21,7 +21,7 @@ Each execution of the program runs a certain number of episodes (games). After e
 
 ---
 ## How to run
-This is a python 3 program. Execute tictactoe_main.py. To install the required packages, requirements.txt is included, so simply run the following command.
+This is a python 3 program. Execute tictactoe_main.py with no arguments. To install the required packages, requirements.txt is included, so simply run the following command.
 ```
     pip install -r requirements.txt
 ```

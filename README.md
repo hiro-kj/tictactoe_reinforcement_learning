@@ -21,20 +21,21 @@ Each execution of the program runs a certain number of episodes (games). After e
 
 ---
 ## How to run
-This is a python 3 program. Execute tictactoe_main.py with no arguments. To install the required packages, requirements.txt is included, so simply run the following command.
+This is a python 3 program. You can execute tictactoe_main.py with no arguments. To install the required packages, requirements.txt is included, so simply run the following command.
 ```
     pip install -r requirements.txt
 ```
 
-To switch between Q-Learning and SARSA, in the main function in tictactoe_main.py, you will find these two sets of two lines.
-```python
-    agent = TicTacToeQLearningAgent()
-    # agent = TicTacToeSarsaAgent()
+By default, it uses Q-Learning. To switch to SARSA, use the *--sarsa* command line option.
 
-    experiment = QLearningExperiment(env, agent, before_episode_callback, after_episode_callback)
-    # experiment = SarsaExperiment(env, agent, before_episode_callback, after_episode_callback)
+For Q-Learning:
 ```
-Comment out whichever you don't want.
+    python tictactoe_main.py
+```
+For SARSA:
+```
+    python tictactoe_main.py --sarsa
+```
 
 ---
 ## Folder hierarchy

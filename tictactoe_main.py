@@ -1,3 +1,4 @@
+import sys
 from rl_base.rl_experiment import QLearningExperiment
 from rl_base.rl_experiment import SarsaExperiment
 from tictactoe_env import TicTacToeEnv
@@ -16,10 +17,11 @@ class Epsilon:
         self.value = self.value * self.decay_rate
 
 def main():
+    use_sarsa = True if len(sys.argv) >= 2 and '--sarsa' in sys.argv else False
+
     num_episodes = 3000
     env = TicTacToeEnv(TicTacToeDecentAlgorithmPlayer(2, 1))
-    agent = TicTacToeQLearningAgent()
-    # agent = TicTacToeSarsaAgent()
+    agent = TicTacToeSarsaAgent() if use_sarsa else TicTacToeQLearningAgent()
     epsilon = Epsilon(1.0, 0.95)
     rewards = []
     moves = []
@@ -30,8 +32,12 @@ def main():
         rewards.append(reward)
         moves.append(env.get_moves())
 
-    experiment = QLearningExperiment(env, agent, before_episode_callback, after_episode_callback)
-    # experiment = SarsaExperiment(env, agent, before_episode_callback, after_episode_callback)
+    if use_sarsa:
+        experiment = SarsaExperiment(env, agent, before_episode_callback, after_episode_callback)
+        print("using SARSA")
+    else:
+        experiment = QLearningExperiment(env, agent, before_episode_callback, after_episode_callback)
+        print("using Q-Learning")
 
     experiment.experiment(num_episodes)
 
@@ -39,8 +45,10 @@ def main():
     analyzer = TicTacToeMoveAnalyzer(moves, rewards, num_games_to_analyze)
     num_wins = analyzer.num_wins()
     num_corner_openings = analyzer.num_corner_openings()
+    rl_method = "SARSA" if use_sarsa else "Q-Learning"
     text = "{0} wins and {1} corner openings in the last {2} games.".format(num_wins, num_corner_openings, num_games_to_analyze)
 
-    TicTacToePlotter.plot_episode_reward(rewards, text)
+    TicTacToePlotter.plot_episode_reward(rewards, text, rl_method)
 
-main()
+if __name__ == "__main__":
+    main()

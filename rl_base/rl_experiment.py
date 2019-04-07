@@ -7,7 +7,7 @@ class ReinforcementLearningExperiment:
         self.after_episode_callback = after_episode_callback
 
     def run_episode(self):
-        raise NotImplementedError('Inheriting classes must override _state_to_string.')
+        raise NotImplementedError('Inheriting classes must override run_episode.')
 
     def experiment(self, num_episodes):
         for episode_number in range(num_episodes):
